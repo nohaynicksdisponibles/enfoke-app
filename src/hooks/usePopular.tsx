@@ -1,11 +1,11 @@
-import { useQuery } from "react-query";
-import { getNowPlaying } from "../services/movies.service";
+import { useMutation, useQuery } from "react-query";
+import { getNowPlaying, getPopular } from "../services/movies.service";
 import { HOOKS_NAMES } from "../interfaces/movies.interfaces";
 
-function usePopular(id: string | number = 1) {
+function usePopular(id: number = 1) {
     return useQuery(
-        HOOKS_NAMES.POPULAR,
-        () => getNowPlaying(id).then(res => res.data)
+        [HOOKS_NAMES.POPULAR, id],
+        () => getPopular(id).then(res => res.data)
     );
 }
 

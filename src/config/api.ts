@@ -1,4 +1,3 @@
-// import env from "react-dotenv";
 import axios from 'axios';
 // Configuración global de Axios
 export const api = axios.create({
@@ -10,7 +9,7 @@ export const api = axios.create({
     api_key: 'c8fe2f69accb051f436de7c46cb033b4',
     language: 'es'
   },
-  baseURL: 'https://api.themoviedb.org/3/movie',
+  baseURL: 'https://api.themoviedb.org/3',
   timeout: 15000
 });
 

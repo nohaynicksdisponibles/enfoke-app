@@ -1,11 +1,11 @@
-import { useQuery } from "react-query";
-import { getNowPlaying } from "../services/movies.service";
+import { useMutation, useQuery } from "react-query";
+import { getNowPlaying, getUpcoming } from "../services/movies.service";
 import { HOOKS_NAMES } from "../interfaces/movies.interfaces";
 
-function useUpcoming(id: string | number = 1) {
+function useUpcoming(id: number = 1) {
     return useQuery(
-        HOOKS_NAMES.UPCOMING,
-        () => getNowPlaying(id).then(res => res.data)
+        [HOOKS_NAMES.UPCOMING, id],
+        () => getUpcoming(id).then(res => res.data)
     );
 }
 

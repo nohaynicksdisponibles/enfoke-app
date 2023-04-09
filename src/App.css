@@ -2,3 +2,53 @@
   margin: 0;
   padding: 0;
 }
+
+.custom-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #d8d8d8;
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.custom-scroll::-moz-scrollbar {
+  height: 8px;
+}
+
+.custom-scroll::-moz-scrollbar-thumb {
+  background-color: #d8d8d8;
+  border-radius: 10px;
+}
+
+.custom-scroll::-moz-scrollbar-track {
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.gradient-row {
+  background: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  background: rgb(0, 81, 149);
+  background: linear-gradient(180deg, rgba(0, 81, 149, 1) 0%, rgba(254, 254, 255, 1) 100%);
+}
+
+.navbar-home {
+  background: rgb(0,48,88);
+  background: linear-gradient(180deg, rgba(0,48,88,1) 0%, rgba(0,81,149,1) 100%);
+  border: 0;
+}
+
+.navbar-page {
+  background: rgb(0,48,88);
+  border: 0;
+}
