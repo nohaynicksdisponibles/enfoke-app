@@ -1,14 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
-import { Row, Col, Card, Radio } from 'antd';
-import { MovieType, provider } from '../../context';
-import useGenres from '../../hooks/useGenres';
-import Navbar, { NavbarType } from '../../components/Navbar';
-import StateWrapper from '../../components/StateWrapper';
+import { Row, Col } from 'antd';
+import { MovieType, provider } from '@context/index';
+import useGenres from '@hooks/useGenres';
+import StateWrapper from '@components/StateWrapper';
 import { useParams } from 'react-router-dom';
-import useMovieType from '../../hooks/useMovieType';
-import useJoinQueryResults from '../../hooks/useJoinQueriesResult';
-import _, { filter } from 'lodash';
-import { Options } from '../../context/reducer';
+import useMovieType from '@hooks/useMovieType';
+import { Options } from '@context/reducer';
+import PageLayout from '@components/PageLayout';
+import MoviesGrid from '@components/MoviesGrid';
+import PageNotFound from '@screens/PageNotFound';
+import GenresFilter from '@components/GenresFilter';
+import { NavbarType } from '@components/Navbar';
 
 const routes = ['nowplaying', 'popular', 'toprated', 'upcoming']
 
@@ -17,17 +19,16 @@ const MovieFilter = () => {
 
     if (!routes.includes(String(type))) {
         return (
-            <p>HUBO UN ERROR</p>
+            <PageNotFound />
         )
     }
 
     const [page, setPage] = useState(1);
 
-    const useFetchMovies = useMovieType(type!)
+    const useFetchMovies = useMovieType(type!);
 
     const { data: genres, ...genresQuery } = useGenres()
-    const { data: moviesData, isSuccess, ...fetchMoviesQuery } = useFetchMovies(page)
-    // const {...queryResults} = useJoinQueryResults([genresQuery, fetchMoviesQuery])
+    const { data: moviesData, isSuccess, ...moviesQuery } = useFetchMovies(page)
 
     const [selectedValue, setSelectedValue] = useState<string | null>(null)
 
@@ -37,50 +38,21 @@ const MovieFilter = () => {
         if (isSuccess) dispatch({ type: Options[type!], payload: moviesData.results })
     }, [moviesData])
 
-    /*
-    _.filter(
-        data[type!], function (movie) {
-            if (!selectedValue) return true;
-
-            const result = _.find(movie.genre_ids, selectedValue)
-
-            result ? true : false
-        }
-    );*/
-
     return (
-        <>
-            <Navbar type={NavbarType.PAGE} />
-
-
-            <Row gutter={[16, 16]}>
-                <Col  flex="0 0 30%">
+        <PageLayout type={NavbarType.PAGE}>
+            <Row style={{ padding: 10 }}>
+                <Col span={5}>
                     <StateWrapper {...genresQuery} >
-                        <div>
-                            <Radio.Group value={selectedValue} style={{ display: 'flex', flexDirection: 'column', textAlign: 'center' }} onChange={e => setSelectedValue(e.target.value)}>
-                                {genres?.genres.map(genre => (
-                                    <Radio.Button key={genre.id} value={genre.id}>{genre.name}</Radio.Button>
-                                ))}
-                            </Radio.Group>
-                        </div>
+                        <GenresFilter selectedValue={selectedValue!} setSelectedValue={setSelectedValue} genres={genres!} />
                     </StateWrapper>
-
                 </Col>
-                <Col  flex="1">
-                    {data[type!].filter((movie) => !selectedValue || movie.genre_ids?.includes(Number(selectedValue))).map((movie) => (
-                        <Card
-                            cover={
-                                <img
-                                    alt={movie.title}
-                                    src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-                                />
-                            }
-                        >
-                            <Card.Meta title={movie.title} description={`Rating: ${movie.vote_average}`} />
-                        </Card>
-                    ))}</Col>
+                <Col span={19}>
+                    <StateWrapper isSuccess={isSuccess} {...moviesQuery} >
+                        <MoviesGrid movies={data[type!]} selectedValue={selectedValue!} page={page} total={moviesData?.total_results!} onChange={setPage} />
+                    </StateWrapper>
+                </Col>
             </Row>
-        </>
+        </PageLayout >
     );
 };
 

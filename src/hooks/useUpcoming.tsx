@@ -1,6 +1,6 @@
-import { useMutation, useQuery } from "react-query";
-import { getNowPlaying, getUpcoming } from "../services/movies.service";
-import { HOOKS_NAMES } from "../interfaces/movies.interfaces";
+import { useQuery } from "react-query";
+import { getUpcoming } from "@services/movies.service";
+import { HOOKS_NAMES } from "@interfaces/movies.interfaces";
 
 function useUpcoming(id: number = 1) {
     return useQuery(

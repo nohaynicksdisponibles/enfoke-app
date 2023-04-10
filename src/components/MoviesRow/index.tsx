@@ -1,8 +1,8 @@
 import _ from 'lodash';
-import styles from './styles';
-import CustomCard from '../Card';
-import StateWrapper from '../StateWrapper';
+import CustomCard from '@components/Card';
+import StateWrapper from '@components/StateWrapper';
 import { CSSProperties } from 'react';
+import { styles } from './styles';
 
 export enum TextAlign {
     START = 'start',
@@ -34,14 +34,24 @@ const MoviesRow = ({ title, textAlign, backgroundImage, useQueryHook }: IMoviesF
         backgroundSize: '100% 100%'
     }
 
-    const styles: CSSProperties = {position: 'relative', margin: '10px 0px', minHeight: 444, maxWidth: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', ...(backgroundImage ? backgroundStyles : {})}
+    const stylesForRow: CSSProperties = {
+        position: 'relative',
+        margin: '10px 0px',
+        minHeight: 444,
+        maxWidth: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        ...(backgroundImage ? backgroundStyles : {}
+        )
+    }
 
     return (
-        <div style={styles}>
-            <div className="gradient-row" style={{position: 'absolute', top: 0, right: 0, width: 50, height: 444, zIndex:20}}/>
+        <div style={stylesForRow}>
+            <div className="gradient-row" style={styles.gradientRow} />
             <StateWrapper {...queryProps}>
-                <h2 style={{ textAlign: textAlign, marginInline: 5, fontWeight: 'bold', fontFamily: 'sans-serif' ,margin: 5}}>{title}</h2>
-                <div className='custom-scroll' style={{ display: 'flex', width: '100vw', minHeight: 400, justifyContent: 'flex-start', overflowX: 'scroll', maxWidth: '100vw'}}>
+                <h2 style={styles.gradientTitle} className={`text-align: ${textAlign}`}>{title}</h2>
+                <div className='custom-scroll' style={styles.customScroll}>
                     {_.map(results?.results, (result) => (
                         <CustomCard alt={result.title!} rating={result.vote_average?.toString()!} src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`} title={result.title!} movieId={result.id!} key={result.id} />
                     ))}

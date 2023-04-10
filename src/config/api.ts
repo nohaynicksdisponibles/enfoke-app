@@ -6,10 +6,10 @@ export const api = axios.create({
     'Content-Type': 'application/json'
   },
   params: {
-    api_key: 'c8fe2f69accb051f436de7c46cb033b4',
+    api_key: process.env.REACT_APP_THEMOVIEDB_API,
     language: 'es'
   },
-  baseURL: 'https://api.themoviedb.org/3',
+  baseURL: process.env.REACT_APP_API_BASE_URL,
   timeout: 15000
 });
 

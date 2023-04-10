@@ -1,6 +1,6 @@
-import { useMutation, useQuery } from "react-query";
-import { getNowPlaying, getTopRated } from "../services/movies.service";
-import { HOOKS_NAMES } from "../interfaces/movies.interfaces";
+import { useQuery } from "react-query";
+import { getTopRated } from "@services/movies.service";
+import { HOOKS_NAMES } from "@interfaces/movies.interfaces";
 
 function useTopRated(id: number = 1) {
     return useQuery(

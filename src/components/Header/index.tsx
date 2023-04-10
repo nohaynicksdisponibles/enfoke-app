@@ -1,6 +1,7 @@
 import { Button, Input, Typography, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import { searchMovie } from "../../services/movies.service";
+import { searchMovie } from "@services/movies.service";
+import { styles } from "./styles";
 
 const Header = () => {
     const navigate = useNavigate();
@@ -20,11 +21,11 @@ const Header = () => {
     }
 
     return (
-        <header className="header" style={{ minHeight: 250, width: '100vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingBottom: 50 }}>
+        <header className="header" style={styles.header}>
             {contextHolder}
             <div style={{ width: '80%' }}>
-                <Typography.Title style={{ color: 'white' }}>Bienvenidos.</Typography.Title>
-                <Typography.Title level={2} style={{ color: 'white', marginTop: -15 }}>Millones de películas por descubrir. Explora ahora.</Typography.Title>
+                <Typography.Title style={styles.title}>Bienvenidos.</Typography.Title>
+                <Typography.Title level={2} style={styles.secondTitle}>Millones de películas por descubrir. Explora ahora.</Typography.Title>
 
                 <Input.Search
                     placeholder={'Buscar una película'}
@@ -37,7 +38,6 @@ const Header = () => {
                     onSearch={(value) => search(value)}
                 />
             </div>
-
         </header>
     )
 }
