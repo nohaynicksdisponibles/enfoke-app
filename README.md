@@ -34,7 +34,12 @@ En el proyecto se utilizan las siguientes dependencias: antd, axios, lodash y re
 **Ya estás listo para correr el proyecto!** . Ahora ejecuta:
 ```bash
   npm run dev
-```
+```  
+
+## Deploy
+
+También podés echar un vistazo a la app por Vercel sin necesidad de instalarla:
+- https://enfoke-app.vercel.app/
 
 ## Authors
 
