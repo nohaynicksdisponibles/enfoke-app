@@ -1,5 +1,5 @@
 import { api } from "../config/api";
-import { IGenres, IMovieDetail, INowPlaying, IPopular, ISearchResults, ITopRated, IUpcoming } from "../interfaces/movies.interfaces";
+import { IGenres, IMovieDetail, INowPlaying, IPopular, ISearchResults, ITopRated, IUpcoming } from "@interfaces/movies.interfaces";
 
 function fetchData<T>(endpoint: string, params: any = {}): Promise<{ data: T }> {
     return api.get<T>(endpoint, { params }).then(res => ({ data: res.data }));

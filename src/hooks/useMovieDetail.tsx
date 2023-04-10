@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
-import { getMovie } from "../services/movies.service";
-import { HOOKS_NAMES } from "../interfaces/movies.interfaces";
+import { getMovie } from "@services/movies.service";
+import { HOOKS_NAMES } from "@interfaces/movies.interfaces";
 
 function useMovieDetail(id: number){
     return useQuery(

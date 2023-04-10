@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useReducer } from "react";
-import { IResult } from "../interfaces/movies.interfaces";
-import { UserAction, UserActionsTypes, userReducer } from "./reducer";
+import { IResult } from "@interfaces/movies.interfaces";
+import { UserAction, userReducer } from "./reducer";
 
 export enum MovieType {
     NOW_PLAYING = 'nowplaying',

@@ -52,3 +52,45 @@
   background: rgb(0,48,88);
   border: 0;
 }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 10px;
+}
+
+.meta{
+  cursor: pointer;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.message-wrapper {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.col-for-card-image{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.spin {
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+.navbar-text {
+  color: 'white';
+  font-size: 18px;
+  font-weight: bold;
+}

@@ -1,37 +1,54 @@
-import { Pagination } from 'antd';
-import useNowPlaying from '../../hooks/useNowPlaying';
+import { Card, Pagination, Image } from 'antd';
 import _ from 'lodash'
-import CustomCard from '../Card';
-import { IResult } from '../../interfaces/movies.interfaces';
-import { useState } from 'react';
-import usePopular from '../../hooks/usePopular';
+import { IResult } from '@interfaces/movies.interfaces';
+import notfound from '@assets/notfound.png'
+import { useNavigate } from 'react-router-dom';
+import { styles } from './styles';
 
-interface IMoviesFlexProps {
-    movies?: any[];
-    totalResults?: number;
-    onChange?: (value: number) => void;
-    defaultCurrent?: number;
-    useQueryHook: (value: number) => {
-      data: any;
-      isLoading: boolean;
-      error: any;
-      refetch: () => void;
-    };
-  }
-  
-  const MoviesFlex = ({ movies = [], totalResults = 1000, onChange, defaultCurrent = 1, useQueryHook }: IMoviesFlexProps) => {
-    const [current, setCurrent] = useState(1);
-    const { data: results, ...queryProps } = useQueryHook(current);
-  
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-        <div></div>
-        <div style={{ display: 'flex', width: '100vw', justifyContent: 'flex-start', overflowX: 'scroll' }}>
-          {_.map(results?.results, (result) => (
-            <CustomCard movieId={results?.id!} alt={result.title!} description={result.popularity?.toString()!} src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`} title={result.title!} key={result.id} />
-          ))}
-        </div>
-        <Pagination onChange={value => setCurrent(value)} total={totalResults} pageSize={20} style={{ marginTop: '10px' }} defaultCurrent={current} />
-      </div>
-    );
+interface IMoviesGridProps {
+  movies?: IResult[];
+  onChange?: (value: number) => void;
+  selectedValue: string;
+  page: number;
+  total: number;
+}
+
+const MoviesGrid = ({ movies = [], selectedValue, page, total = 1000, onChange }: IMoviesGridProps) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (movie: IResult) => navigate(`/movie/${movie.id}`);
+
+  const handleImageClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
   };
+
+  return (
+    <>
+      <div className='card-grid'>
+        {
+          _.flow([
+            (arr) => arr.filter((movie: IResult) => !selectedValue || movie.genre_ids?.includes(Number(selectedValue))),
+            (arr) => arr.map((movie: IResult) =>
+              <Card
+                onClick={() => handleNavigate(movie)}
+                style={styles.card}
+                cover={<Image
+                  onClick={handleImageClick}
+                  alt={movie.title}
+                  height={280}
+                  fallback={notfound}
+                  src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} />}
+              >
+                <Card.Meta className='meta' title={movie.title} description={`Rating: ${movie.vote_average}`} />
+              </Card>),
+          ])(movies)
+        }
+      </div><div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+        <Pagination defaultCurrent={page} total={total} onChange={onChange} />
+      </div>
+    </>
+
+  );
+};
+
+export default MoviesGrid

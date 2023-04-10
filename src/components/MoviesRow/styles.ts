@@ -1,7 +1,32 @@
-export default {
-    flex: {
-        display: 'flex',
-        height: '200px',
-        width: '100vw'
+import { CSSProperties } from "react";
+
+export interface StylesTypes {
+    gradientRow: CSSProperties;
+    gradientTitle: CSSProperties;
+    customScroll: CSSProperties;
+}
+
+export const styles: StylesTypes = {
+    gradientRow: {
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        width: 50,
+        height: 444,
+        zIndex: 20,
+    },
+    gradientTitle: {
+        marginInline: 5,
+        fontWeight: 'bold',
+        fontFamily: 'sans-serif',
+        margin: 5
+    },
+    customScroll: {
+        display: 'flex', 
+        width: '100vw', 
+        minHeight: 400, 
+        justifyContent: 'flex-start', 
+        overflowX: 'scroll', 
+        maxWidth: '100vw' 
     }
 }

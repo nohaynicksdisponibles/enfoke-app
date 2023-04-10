@@ -1,5 +1,5 @@
 import { INITIAL_STATE_TYPE } from ".";
-import { IResult } from "../interfaces/movies.interfaces";
+import { IResult } from "@interfaces/movies.interfaces";
 
 export enum Options {
     nowplaying = 'nowplaying',

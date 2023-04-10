@@ -1,6 +1,6 @@
 import React from "react"
 import { PropsWithChildren } from "react"
-import { ContextProvider } from "../../context"
+import { ContextProvider } from "@context/index"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { BrowserRouter } from "react-router-dom"
 
