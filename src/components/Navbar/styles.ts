@@ -1,8 +1,4 @@
-import { CSSProperties } from "react";
-
-export interface StylesTypes {
-    text: CSSProperties;
-}
+import { StylesTypes } from "@interfaces/styles.interfaces";
 
 export const styles: StylesTypes = {
     text: { color: 'white', fontSize: '18px', fontWeight: 'bold' }

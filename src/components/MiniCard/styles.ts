@@ -1,10 +1,4 @@
-import { CSSProperties } from "react";
-
-export interface StylesTypes {
-    card: CSSProperties;
-    image: CSSProperties;
-    container: CSSProperties;
-}
+import { StylesTypes } from "@interfaces/styles.interfaces";
 
 export const styles: StylesTypes = {
     card: { minWidth: '50%', maxWidth: '50%', margin: '15px 0px', cursor: 'pointer' },

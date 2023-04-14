@@ -1,8 +1,4 @@
-import { CSSProperties } from "react";
-
-export interface StylesTypes {
-    container: CSSProperties;
-}
+import { StylesTypes } from "@interfaces/styles.interfaces";
 
 export const styles: StylesTypes = {
     container: {overflowX: 'hidden'}

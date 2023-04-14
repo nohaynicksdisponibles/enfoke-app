@@ -1,8 +1,4 @@
-import { CSSProperties } from "react";
-
-export interface StylesTypes {
-    radioGroup: CSSProperties;
-}
+import { StylesTypes } from "@interfaces/styles.interfaces";
 
 export const styles: StylesTypes = {
     radioGroup: { display: 'flex', flexDirection: 'column', textAlign: 'center' }

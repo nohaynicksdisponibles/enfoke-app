@@ -1,10 +1,4 @@
-import { CSSProperties } from "react";
-
-export interface StylesTypes {
-    header: CSSProperties;
-    title: CSSProperties;
-    secondTitle: CSSProperties;
-}
+import { StylesTypes } from "@interfaces/styles.interfaces";
 
 export const styles: StylesTypes = {
     header: { minHeight: 250, width: '100vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', paddingBottom: 50 },

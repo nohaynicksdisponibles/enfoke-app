@@ -1,10 +1,4 @@
-import { CSSProperties } from "react";
-
-export interface StylesTypes {
-    gradientRow: CSSProperties;
-    gradientTitle: CSSProperties;
-    customScroll: CSSProperties;
-}
+import { StylesTypes } from "@interfaces/styles.interfaces";
 
 export const styles: StylesTypes = {
     gradientRow: {

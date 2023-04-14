@@ -1,14 +1,4 @@
-import { CSSProperties } from "react";
-
-export interface StylesTypes {
-    card: CSSProperties;
-    cardBody: CSSProperties;
-    ratingContainer: CSSProperties;
-    rating: CSSProperties;
-    title: CSSProperties;
-    image: CSSProperties;
-    bodyStyle: CSSProperties;
-}
+import { StylesTypes } from "@interfaces/styles.interfaces";
 
 export const styles: StylesTypes = {
     card: { marginInline: 5, marginBottom: 5 },
