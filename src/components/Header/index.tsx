@@ -2,9 +2,11 @@ import { Button, Input, Typography, message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { searchMovie } from "@services/movies.service";
 import { styles } from "./styles";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation();
     const [messageApi, contextHolder] = message.useMessage();
 
     const search = async (query: string) => {
@@ -15,7 +17,7 @@ const Header = () => {
         } catch {
             messageApi.open({
                 type: 'error',
-                content: 'Hubo un error al buscar peliculas. Por favor intente nuevamente.',
+                content: t('Home:Error'),
             });
         }
     }
@@ -23,15 +25,15 @@ const Header = () => {
     return (
         <header className="header" style={styles.header}>
             {contextHolder}
-            <div style={{ width: '80%' }}>
-                <Typography.Title style={styles.title}>Bienvenidos.</Typography.Title>
-                <Typography.Title level={2} style={styles.secondTitle}>Millones de películas por descubrir. Explora ahora.</Typography.Title>
+            <div style={styles.subcontainer}>
+                <Typography.Title style={styles.title}>{t('Home:Welcome')}</Typography.Title>
+                <Typography.Title level={2} style={styles.secondTitle}>{t('Home:Movies')}</Typography.Title>
 
                 <Input.Search
-                    placeholder={'Buscar una película'}
+                    placeholder={t('Home:SearchMovies')!}
                     enterButton={
                         <Button type="primary">
-                            Buscar
+                            {t('Home:Search')}
                         </Button>
                     }
                     size="large"

@@ -10,7 +10,8 @@
       "@hooks/*": ["hooks/*"],
       "@interfaces/*": ["interfaces/*"],
       "@screens/*": ["screens/*"],
-      "@services/*": ["services/*"]
+      "@services/*": ["services/*"],
+      "@locals/*": ["locals/*"]
     },
     "target": "ESNext",
     "useDefineForClassFields": true,

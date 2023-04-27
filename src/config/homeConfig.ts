@@ -6,6 +6,7 @@ import { Divider } from "antd"
 import usePopular from "@hooks/usePopular"
 import useTopRated from "@hooks/useTopRated"
 import useUpcoming from "@hooks/useUpcoming"
+import i18next from '@config/i18n';
 
 export interface HomeOptionsType {
     Component: React.FC<any>;
@@ -21,7 +22,7 @@ const HomeOptions: HomeOptionsType[] = [{
 {
     Component: MoviesRow,
     props: {
-        title: 'En emisión',
+        title: i18next.t("Home:Ongoing"),
         textAlign: TextAlign.START,
         useQueryHook: useNowPlaying,
         backgroundImage: DOTS.ORANGE
@@ -34,7 +35,7 @@ const HomeOptions: HomeOptionsType[] = [{
 {
     Component: MoviesRow,
     props: {
-        title: 'Lo más popular',
+        title: i18next.t("Home:Popular"),
         textAlign: TextAlign.START,
         useQueryHook: usePopular,
         backgroundImage: DOTS.GREEN
@@ -47,7 +48,7 @@ const HomeOptions: HomeOptionsType[] = [{
 {
     Component: MoviesRow,
     props: {
-        title: 'Las mejor valoradas',
+        title: i18next.t("Home:TopRated"),
         textAlign: TextAlign.START,
         useQueryHook: useTopRated,
         backgroundImage: DOTS.VIOLET
@@ -60,7 +61,7 @@ const HomeOptions: HomeOptionsType[] = [{
 {
     Component: MoviesRow,
     props: {
-        title: 'Próximamente',
+        title: i18next.t("Home:Upcoming"),
         textAlign: TextAlign.START,
         useQueryHook: useUpcoming,
         backgroundImage: DOTS.BLUE

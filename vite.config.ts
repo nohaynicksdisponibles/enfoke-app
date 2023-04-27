@@ -24,6 +24,7 @@ export default defineConfig({
       '@interfaces': '/src/interfaces',
       '@screens': '/src/screens',
       '@services': '/src/services',
+      '@locals': '/src/locals'
     },
   }
 })
