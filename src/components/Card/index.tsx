@@ -1,7 +1,9 @@
-import { Card, Image } from 'antd';
+import { Card, Image, Progress, Typography } from 'antd';
 import notfound from '@assets/notfound.png'
 import { useNavigate } from 'react-router-dom';
 import { styles } from './styles';
+
+const { Title, Paragraph } = Typography;
 
 interface ICustomCard {
   alt: string;
@@ -12,6 +14,10 @@ interface ICustomCard {
   movieId: string;
 }
 
+const trailColor = '#4e5a52'
+const dislikeColor = '#ffe153'
+const likeColor = '#17ac6b'
+
 const CustomCard = ({ alt, src, title = '', description = '', rating, movieId }: ICustomCard) => {
   const navigate = useNavigate();
 
@@ -20,6 +26,9 @@ const CustomCard = ({ alt, src, title = '', description = '', rating, movieId }:
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.stopPropagation();
   };
+
+  const percent = parseFloat(rating ?? '0') * 10
+  const strokeColor = parseFloat(rating ?? '0') < 7 ? dislikeColor : likeColor
 
   return (
     <Card
@@ -31,13 +40,20 @@ const CustomCard = ({ alt, src, title = '', description = '', rating, movieId }:
     >
       <div style={styles.cardBody}>
         <div style={styles.ratingContainer} >
-          <p style={styles.rating}>{rating}</p>
+          <Progress style={styles.progress}
+            trailColor={trailColor}
+            size={35}
+            percent={percent}
+            strokeColor={strokeColor}
+            type="circle"
+            format={() => <span style={styles.span}>{rating}</span>}
+          />
         </div>
-        <h4 style={styles.title}>{title}</h4>
-        <p>{description}</p>
+        <Title level={5}>{title}</Title>
+        <Paragraph>{description}</Paragraph>
       </div>
     </Card>
-    );
+  );
 }
 
 export default CustomCard;

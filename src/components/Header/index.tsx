@@ -3,16 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { searchMovie } from "@services/movies.service";
 import { styles } from "./styles";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const Header = () => {
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
     const { t } = useTranslation();
     const [messageApi, contextHolder] = message.useMessage();
 
     const search = async (query: string) => {
         try {
+            setLoading(true)
             const response = await searchMovie(query).then(res => res.data)
-
+            setLoading(false)
+        
             navigate(`/search?query=${query}`, { state: { results: response.results } });
         } catch {
             messageApi.open({
@@ -21,6 +25,8 @@ const Header = () => {
             });
         }
     }
+
+    const buttonText = () => loading ? '' : t('Home:Search')
 
     return (
         <header className="header" style={styles.header}>
@@ -32,8 +38,8 @@ const Header = () => {
                 <Input.Search
                     placeholder={t('Home:SearchMovies')!}
                     enterButton={
-                        <Button type="primary">
-                            {t('Home:Search')}
+                        <Button type="primary" loading={loading} style={styles.button}>
+                            {buttonText()}
                         </Button>
                     }
                     size="large"
