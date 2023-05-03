@@ -1,14 +1,16 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import Home from './screens/Home'
 import MovieDetail from './screens/MovieDetail'
 import SearchResults from './screens/SearchResults'
 import MovieFilter from './screens/MovieFilter'
 import PageNotFound from './screens/PageNotFound'
+import { AnimatePresence } from 'framer-motion'
 
 function App() {
+  const location = useLocation();
   return (
-    <Routes>
+    <Routes key={location.pathname} location={location}>
       <Route path="/" element={<Home />} />
       <Route path="/movie/:id" element={<MovieDetail />} />
       <Route path="/search" element={<SearchResults />} />
