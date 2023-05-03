@@ -5,7 +5,6 @@ import MovieDetail from './screens/MovieDetail'
 import SearchResults from './screens/SearchResults'
 import MovieFilter from './screens/MovieFilter'
 import PageNotFound from './screens/PageNotFound'
-import { AnimatePresence } from 'framer-motion'
 
 function App() {
   const location = useLocation();
