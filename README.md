@@ -27,7 +27,7 @@ Con propósito de facilitar la ejecución del proyecto se facilitará el valor d
 En el proyecto se utilizan las siguientes dependencias: antd, axios, lodash y react-router-dom . Para instalarlas ejecutar los siguientes comandos.
 
 ```bash
-  cd enfoke-app
+  cd movies-app
   npm install
 ```
 
