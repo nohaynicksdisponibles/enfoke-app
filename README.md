@@ -1,10 +1,10 @@
 <p align="center">
-   <img style="width: 300px;" src="https://www.enfoke.com/wp-content/uploads/2020/05/logo@3x-1.png"/>
+   <img style="width: 300px;"          src="https://d500.epimg.net/cincodias/imagenes/2020/12/31/lifestyle/1609408585_467254_1609408795_noticia_normal.jpg"/>
 </p>
 
-# Enfoke Challange
+# Movies App
 
-Challenge para Enfoke utilizando el boilerplate de React + Typescript proporcionado por Vite. El proyecto se trata de una app de peliculas utilizando la API pública de TheMovieDB, en el mismo se pueden buscar películas y filtrarlas por categorías.
+App para buscar peliculas en emisión, populares, mejor valoradas, las próximas a estrenar y los actores que trabajaron en ellas.
  
 
 ## Variables de Entorno
