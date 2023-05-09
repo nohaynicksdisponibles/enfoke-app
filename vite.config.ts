@@ -12,7 +12,7 @@ export default defineConfig({
       preventAssignment: true,
       'process.env.REACT_APP_THEMOVIEDB_API': JSON.stringify(process.env.REACT_APP_THEMOVIEDB_API),
       'process.env.REACT_APP_API_BASE_URL': JSON.stringify(process.env.REACT_APP_API_BASE_URL),
-    }),],
+    })],
   resolve: {
     alias: {
       '@components': '/src/components',

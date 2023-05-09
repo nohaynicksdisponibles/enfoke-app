@@ -4,7 +4,7 @@ export const styles: StylesTypes = {
     gradientRow: {
         position: 'absolute',
         top: 0,
-        right: 0,
+        right: -55,
         width: 50,
         height: 444,
         zIndex: 20,
@@ -22,5 +22,14 @@ export const styles: StylesTypes = {
         justifyContent: 'flex-start', 
         overflowX: 'scroll', 
         maxWidth: '100vw'
+    },
+    row: {
+        position: 'relative',
+        margin: '10px 0px',
+        minHeight: 444,
+        maxWidth: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
     }
 }

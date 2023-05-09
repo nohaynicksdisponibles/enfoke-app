@@ -5,6 +5,7 @@ import MovieDetail from './screens/MovieDetail'
 import SearchResults from './screens/SearchResults'
 import MovieFilter from './screens/MovieFilter'
 import PageNotFound from './screens/PageNotFound'
+import PersonInfo from '@screens/PersonInfo'
 
 function App() {
   const location = useLocation();
@@ -14,6 +15,7 @@ function App() {
       <Route path="/movie/:id" element={<MovieDetail />} />
       <Route path="/search" element={<SearchResults />} />
       <Route path="/filter/:type" element={<MovieFilter />} />
+      <Route path="/person/:id" element={<PersonInfo />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   )

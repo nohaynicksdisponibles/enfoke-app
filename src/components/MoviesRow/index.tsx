@@ -3,7 +3,9 @@ import CustomCard from '@components/Card';
 import StateWrapper from '@components/StateWrapper';
 import { CSSProperties } from 'react';
 import { styles } from './styles';
-import { Typography } from 'antd';
+import notfound from '@assets/notfound.png'
+import { Card, Typography, Image, Row } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const { Title } = Typography;
 
@@ -21,7 +23,9 @@ interface IMoviesFlexProps {
     title: string;
     textAlign: TextAlign;
     backgroundImage?: string;
-    useQueryHook: () => {
+    actors?: boolean;
+    hookParam?: number | string | null | undefined;
+    useQueryHook: (data?: any) => {
         data: any;
         isLoading: boolean;
         error: any;
@@ -29,8 +33,9 @@ interface IMoviesFlexProps {
     };
 }
 
-const MoviesRow = ({ title, textAlign, backgroundImage, useQueryHook }: IMoviesFlexProps) => {
-    const { data: results, ...queryProps } = useQueryHook();
+const MoviesRow = ({ title, textAlign, backgroundImage, actors = false, hookParam = null, useQueryHook }: IMoviesFlexProps) => {
+    const { data: results, ...queryProps } = useQueryHook(hookParam)
+    const navigate = useNavigate();
 
     const backgroundStyles: CSSProperties = {
         backgroundImage: `url(${backgroundImage})`,
@@ -50,17 +55,23 @@ const MoviesRow = ({ title, textAlign, backgroundImage, useQueryHook }: IMoviesF
     }
 
     return (
-        <div style={stylesForRow}>
-            <div className="gradient-row" style={styles.gradientRow} />
+        <Row style={stylesForRow}>
+            <Row className="gradient-row" style={styles.gradientRow} />
             <StateWrapper {...queryProps}>
                 <Title level={3} style={styles.gradientTitle} className={`text-align: ${textAlign}`}>{title}</Title>
+                
                 <div className='custom-scroll' style={styles.customScroll}>
-                    {_.map(results?.results, (result) => (
-                        <CustomCard alt={result.title!} rating={result.vote_average?.toString()!} src={`https://image.tmdb.org/t/p/w500/${result.poster_path}`} title={result.title!} movieId={result.id!} key={result.id} />
-                    ))}
+                    {actors && _.map(results?.cast, (result) =>
+                        (<Card hoverable style={{width: 150, margin: '0px 5px'}} onClick={() => navigate(`/person/${result.id}`)} cover={<Image alt={'actor'} fallback={notfound} style={{height: 200, width: 150}} src={`https://image.tmdb.org/t/p/w500/${result.profile_path}`} />} key={result.id} >
+                            <Card.Meta title={result.name!} description={result.character!} />
+                        </Card>)
+                    )}
+                    {!actors && _.map(results?.results, (result) =>
+                        (<CustomCard alt={result.title!} rating={result.vote_average?.toString()!} src={`https://image.tmdb.org/t/p/w500/${ result.poster_path }`} title={result.title!} movieId={result.id!} key={result.id} />)
+                    )}
                 </div>
             </StateWrapper>
-        </div>
+        </Row>
     );
 };
 

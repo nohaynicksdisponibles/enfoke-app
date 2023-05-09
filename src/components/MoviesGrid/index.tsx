@@ -43,7 +43,8 @@ const MoviesGrid = ({ movies = [], selectedValue, page, total = 1000, onChange }
               </Card>),
           ])(movies)
         }
-      </div><div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+      </div>
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
         <Pagination defaultCurrent={page} total={total} onChange={onChange} />
       </div>
     </>

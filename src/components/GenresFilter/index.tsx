@@ -11,13 +11,11 @@ interface GenresFilterProps {
 
 const GenresFilter = ({genres, selectedValue, setSelectedValue}: GenresFilterProps) => {
     return (
-        <div>
-            <Radio.Group value={selectedValue} style={styles.radioGroup} onChange={e => setSelectedValue(e.target.value)}>
-                {_.map(genres?.genres, genre => (
-                    <Radio.Button key={genre.id} value={genre.id}>{genre.name}</Radio.Button>
-                ))}
-            </Radio.Group>
-        </div>
+        <Radio.Group value={selectedValue} style={styles.radioGroup} onChange={e => setSelectedValue(e.target.value)}>
+            {_.map(genres?.genres, genre => (
+                <Radio.Button key={genre.id} value={genre.id}>{genre.name}</Radio.Button>
+            ))}
+        </Radio.Group>
     )
 }
 

@@ -50,7 +50,9 @@ export enum HOOKS_NAMES {
     UPCOMING = 'upcoming',
     MOVIE_DETAIL = 'movieDetail',
     GENRES = 'genres',
-    MOVIE_TYPE = 'movieType'
+    MOVIE_TYPE = 'movieType',
+    CAST = 'cast',
+    INFO_MOVIES = 'infoMovies'
 }
 
 export interface MovieDetailInterface {
@@ -107,10 +109,9 @@ export interface SpokenLanguage {
 
 export interface IGenres {
     genres: Genre[]
-  }
-  
-  export interface Genre {
+}
+
+export interface Genre {
     id: number
     name: string
-  }
-  
+}
