@@ -2,6 +2,7 @@ import { Menu, Typography } from "antd";
 import { Link } from "react-router-dom";
 import { styles } from "./styles";
 import navbarConfig, { OptionsType } from "@config/navbarConfig";
+import { Grid } from 'antd';
 import _ from "lodash";
 
 export enum NavbarType {
@@ -9,9 +10,12 @@ export enum NavbarType {
     PAGE = 'page'
 }
 
+const { useBreakpoint } = Grid;
+
 const Navbar = ({ type }: { type: NavbarType }) => {
+    const screens = useBreakpoint();
     return (
-        <Menu mode="horizontal" className={`navbar-${type}`} selectedKeys={[]}>
+        <Menu mode={screens.md ? 'horizontal': 'vertical'} className={`navbar-${type}`} selectedKeys={[]}>
             {
                 _.map(navbarConfig, (option: OptionsType) => 
                 <Link to={option.to}>
