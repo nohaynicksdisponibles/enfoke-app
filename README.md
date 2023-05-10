@@ -39,7 +39,7 @@ En el proyecto se utilizan las siguientes dependencias: antd, axios, lodash y re
 ## Deploy
 
 También podés echar un vistazo a la app por Vercel sin necesidad de instalarla:
-- https://enfoke-app.vercel.app/
+- https://movies-app-nohaynicksdisponibles.vercel.app/
 
 ## Authors
 
