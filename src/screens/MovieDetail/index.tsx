@@ -46,4 +46,3 @@ function MovieDetail() {
 }
 
 export default MovieDetail;
-//{{...styles.colDescription, ...(screens.md && {marginBottom: 800})}}
