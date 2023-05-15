@@ -4,10 +4,10 @@ export const styles: StylesTypes = {
     gradientRow: {
         position: 'absolute',
         top: 0,
-        right: -55,
+        right: 0,
         width: 50,
         height: 444,
-        zIndex: 20,
+        zIndex: 20
     },
     gradientTitle: {
         marginInline: 5,
@@ -17,7 +17,7 @@ export const styles: StylesTypes = {
     },
     customScroll: {
         display: 'flex', 
-        width: '100vw', 
+        width: '100%', 
         minHeight: 400, 
         justifyContent: 'flex-start', 
         overflowX: 'scroll', 
