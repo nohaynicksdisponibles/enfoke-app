@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Grid } from 'antd';
 import { MovieType, provider } from '@context/index';
 import useGenres from '@hooks/useGenres';
 import StateWrapper from '@components/StateWrapper';
@@ -14,7 +14,10 @@ import { NavbarType } from '@components/Navbar';
 
 const routes = ['nowplaying', 'popular', 'toprated', 'upcoming']
 
+const { useBreakpoint } = Grid;
+
 const MovieFilter = () => {
+    const screens = useBreakpoint();
     const { type } = useParams<{ type: MovieType }>();
 
     if (!routes.includes(String(type))) {
@@ -40,13 +43,13 @@ const MovieFilter = () => {
 
     return (
         <PageLayout type={NavbarType.PAGE}>
-            <Row style={{ padding: 10 }}>
-                <Col span={5}>
+            <Row style={{ padding: 10, display: 'flex' }}>
+                <Col span={screens.md ? 5: 24}>
                     <StateWrapper {...genresQuery} >
                         <GenresFilter selectedValue={selectedValue!} setSelectedValue={setSelectedValue} genres={genres!} />
                     </StateWrapper>
                 </Col>
-                <Col span={19}>
+                <Col span={screens.md ? 19: 24}>
                     <StateWrapper isSuccess={isSuccess} {...moviesQuery} >
                         <MoviesGrid movies={data[type!]} selectedValue={selectedValue!} page={page} total={moviesData?.total_results!} onChange={setPage} />
                     </StateWrapper>

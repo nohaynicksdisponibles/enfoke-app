@@ -1,4 +1,4 @@
-import { Card, Pagination, Image } from 'antd';
+import { Card, Pagination, Image, Typography } from 'antd';
 import _ from 'lodash'
 import { IResult } from '@interfaces/movies.interfaces';
 import notfound from '@assets/notfound.png'
@@ -22,13 +22,16 @@ const MoviesGrid = ({ movies = [], selectedValue, page, total = 1000, onChange }
     e.stopPropagation();
   };
 
+  const filteredMovies = movies.filter((movie: IResult) => !selectedValue || movie.genre_ids?.includes(Number(selectedValue)))
+
   return (
     <>
-      <div className='card-grid'>
+      <div style={styles.cardContainer}>
+        {filteredMovies.length === 0 && <Typography.Text>No se encontraron resultados</Typography.Text>}
         {
-          _.flow([
-            (arr) => arr.filter((movie: IResult) => !selectedValue || movie.genre_ids?.includes(Number(selectedValue))),
-            (arr) => arr.map((movie: IResult) =>
+          _.map(
+            filteredMovies,
+            (movie: IResult) => 
               <Card
                 onClick={() => handleNavigate(movie)}
                 style={styles.card}
@@ -40,11 +43,11 @@ const MoviesGrid = ({ movies = [], selectedValue, page, total = 1000, onChange }
                   src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} />}
               >
                 <Card.Meta className='meta' title={movie.title} description={`Rating: ${movie.vote_average}`} />
-              </Card>),
-          ])(movies)
+              </Card>
+          )
         }
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 20 }}>
+      <div style={styles.pagination}>
         <Pagination defaultCurrent={page} total={total} onChange={onChange} />
       </div>
     </>
